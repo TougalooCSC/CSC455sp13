@@ -6,6 +6,19 @@
 *.exe
 *.o
 *.so
+# Visual Studio non-source/project files #
+##########################################
+*.obj
+*.ilk
+*.idb
+*.pdb
+*.dll.*
+*.ncb
+*.dep
+*.vcxproj.*
+*.vcproj.*
+
+
 
 # Packages #
 ############
@@ -16,7 +29,7 @@
 *.gz
 *.iso
 *.jar
-*.rar
+*.rar 
 *.tar
 *.zip
 
