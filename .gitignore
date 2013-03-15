@@ -6,6 +6,7 @@
 *.exe
 *.o
 *.so
+*.lib
 # Visual Studio non-source/project files #
 ##########################################
 *.obj
@@ -17,6 +18,12 @@
 *.dep
 *.vcxproj.*
 *.vcproj.*
+BuildLog.htm
+*.pch
+*.exe.embed.manifest
+*.exe.embed.manifest.res
+*.exe.intermediate.manifest
+
 
 
 

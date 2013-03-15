@@ -39,6 +39,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="-wd4959"
 				Optimization="0"
 				AdditionalIncludeDirectories="C:\Users\corntoole\Documents\GitHub\CSC455sp13\P2_OpenGL_Lite\assignment2\libst\ext\zlib\include;C:\Users\corntoole\Documents\GitHub\CSC455sp13\P2_OpenGL_Lite\assignment2\libst\ext\libpng\include;C:\Users\corntoole\Documents\GitHub\CSC455sp13\P2_OpenGL_Lite\assignment2\libst\ext\libjpeg\include;C:\Users\corntoole\Documents\GitHub\CSC455sp13\P2_OpenGL_Lite\assignment2\libst\ext\glew\include;C:\Users\corntoole\Documents\GitHub\CSC455sp13\P2_OpenGL_Lite\assignment2\libst\ext\freetype\include;C:\Users\corntoole\Documents\GitHub\CSC455sp13\P2_OpenGL_Lite\assignment2\libst\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBST_EXPORTS;"
@@ -715,6 +716,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\ClassDiagram1.cd"
+			>
+		</File>
 		<File
 			RelativePath=".\ext\vc2008\lib\Debug\freetype231.lib"
 			>

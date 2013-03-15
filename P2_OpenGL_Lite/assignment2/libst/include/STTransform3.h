@@ -17,6 +17,21 @@ class STTransform3
 	// accessor functions, you'll probably want to implement multiplication between transforms.
 	// You have a lot of flexibility as to how you implement this class, but you will need to
 	// follow the conventions used in the rest of libst.
+private:
+	float _M[3][3];
+
+public:
+	STTransform3();
+	STTransform3(float);
+	STTransform3(float [3][3]);
+	STTransform3(STVector3, STVector3, STVector3);
+
+	STPoint3 multiply(STPoint3);
+	STTransform3 multiply(const STTransform3, const STTransform3);
+
 };
+
+//STPoint3 operator*(const STPoint3& left, const STVector3& right);
+//STTransform3 operator*(const STTransform3& left, const SSTransform3& right);
 
 #endif

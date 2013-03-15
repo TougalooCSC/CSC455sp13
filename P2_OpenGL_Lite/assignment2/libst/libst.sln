@@ -3,7 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libST", "libST.vcproj", "{22FFEC53-C360-4794-9DF7-B38433AEA467}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{98D346A4-855C-4704-A03C-A6BB3FE106CF}"
+	ProjectSection(SolutionItems) = preProject
+		libst.vsmdi = libst.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestTransform", "..\TestTransform\TestTransform.vcproj", "{85001FAD-5B63-4631-96C8-1E3A61D5A27D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{22FFEC53-C360-4794-9DF7-B38433AEA467} = {22FFEC53-C360-4794-9DF7-B38433AEA467}
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = libst.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
@@ -13,6 +27,10 @@ Global
 		{22FFEC53-C360-4794-9DF7-B38433AEA467}.Debug|Win32.Build.0 = Debug|Win32
 		{22FFEC53-C360-4794-9DF7-B38433AEA467}.Release|Win32.ActiveCfg = Release|Win32
 		{22FFEC53-C360-4794-9DF7-B38433AEA467}.Release|Win32.Build.0 = Release|Win32
+		{85001FAD-5B63-4631-96C8-1E3A61D5A27D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{85001FAD-5B63-4631-96C8-1E3A61D5A27D}.Debug|Win32.Build.0 = Debug|Win32
+		{85001FAD-5B63-4631-96C8-1E3A61D5A27D}.Release|Win32.ActiveCfg = Release|Win32
+		{85001FAD-5B63-4631-96C8-1E3A61D5A27D}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
