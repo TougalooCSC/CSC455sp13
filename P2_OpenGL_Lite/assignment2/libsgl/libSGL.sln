@@ -5,6 +5,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libSGL", "libSGL.vcproj", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libST", "..\libst\libST.vcproj", "{22FFEC53-C360-4794-9DF7-B38433AEA467}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SGLDemo", "..\SGLDemo\SGLDemo.vcproj", "{111C3339-AFEF-48EF-B1A6-6A68AC404B2C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{22FFEC53-C360-4794-9DF7-B38433AEA467} = {22FFEC53-C360-4794-9DF7-B38433AEA467}
+		{AC7CB3A8-BD98-454C-BA1B-B922A4F5F610} = {AC7CB3A8-BD98-454C-BA1B-B922A4F5F610}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -19,6 +25,10 @@ Global
 		{22FFEC53-C360-4794-9DF7-B38433AEA467}.Debug|Win32.Build.0 = Debug|Win32
 		{22FFEC53-C360-4794-9DF7-B38433AEA467}.Release|Win32.ActiveCfg = Release|Win32
 		{22FFEC53-C360-4794-9DF7-B38433AEA467}.Release|Win32.Build.0 = Release|Win32
+		{111C3339-AFEF-48EF-B1A6-6A68AC404B2C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{111C3339-AFEF-48EF-B1A6-6A68AC404B2C}.Debug|Win32.Build.0 = Debug|Win32
+		{111C3339-AFEF-48EF-B1A6-6A68AC404B2C}.Release|Win32.ActiveCfg = Release|Win32
+		{111C3339-AFEF-48EF-B1A6-6A68AC404B2C}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

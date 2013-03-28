@@ -24,11 +24,11 @@ STTransform3::STTransform3(STVector3 X, STVector3 Y, STVector3 Z){
 }
 //TODO: fix incorrect order of operands when multiplying a point and a matrix
 STPoint3 STTransform3::multiply(STPoint3 point){
-	STVector3 rowVector(point);
+	STVector3 colVector(point);
 	STVector3 result;
-	result.x = STVector3::Dot(rowVector, STVector3(_M[0][0],_M[1][0],_M[2][0]));
-	result.y = STVector3::Dot(rowVector, STVector3(_M[0][1],_M[1][1],_M[2][1]));
-	result.z = STVector3::Dot(rowVector, STVector3(_M[0][2],_M[1][2],_M[2][2]));
+	result.x = STVector3::Dot(STVector3(_M[0][0],_M[0][1],_M[0][2]), colVector);
+	result.y = STVector3::Dot(STVector3(_M[1][0],_M[1][1],_M[1][2]), colVector);
+	result.z = STVector3::Dot(STVector3(_M[2][0],_M[2][1],_M[2][2]), colVector);
 	return STPoint3(result);
 }
 
