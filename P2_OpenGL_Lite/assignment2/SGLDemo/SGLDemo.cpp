@@ -29,7 +29,7 @@ void display( void )
      sglVertex(320.f, 150.f);
      sglVertex(150.f, 350.f);
      sglVertex(320.f, 350.f);
- sglEnd();
+    sglEnd();
 
 
 	// --- End of drawing calls ------+
