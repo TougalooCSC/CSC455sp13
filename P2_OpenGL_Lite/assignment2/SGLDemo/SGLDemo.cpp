@@ -25,10 +25,10 @@ void display( void )
 	sglLoadIdentity();
 	sglBeginTriangles();
      sglColor(.8f, .1f, 0.f);
-     sglVertex(150.f, 150.f);
-     sglVertex(320.f, 150.f);
-     sglVertex(150.f, 350.f);
-     sglVertex(320.f, 350.f);
+     sglVertex(100.f, 100.f);
+     sglVertex(300.f, 100.f);
+     sglVertex(300.f, 300.f);
+     sglVertex(100.f, 300.f);
     sglEnd();
 
 

@@ -2,6 +2,10 @@
 #include "st.h"
 #include <stack>
 #include <iostream>
+#include <string>
+#include <cstdio>
+#include <vector>
+#include <algorithm>
 using namespace std;
 // --- Do not modify this code ---+
 #define IMPLEMENT_THIS_FUNCTION printf("Warning: call to unimplemented function!\n")
@@ -18,6 +22,7 @@ public:
 	STPoint3 v2;
 	STPoint3 v3;
 	Triangle(STPoint3, STPoint3, STPoint3);
+	string toString();
 };
 
 Triangle::Triangle(STPoint3 vert1, STPoint3 vert2, STPoint3 vert3) 
@@ -26,6 +31,12 @@ Triangle::Triangle(STPoint3 vert1, STPoint3 vert2, STPoint3 vert3)
 	v2 = vert2;
 	v3 = vert3;
 }
+
+string Triangle::toString() { 
+		char str_rep[200];
+		sprintf(str_rep, "v1{%f, %f, %f} \nv2{%f, %f, %f} \nv3{%f, %f, %f}\n", v1.x, v1.y, v1.z, v2.x, v2.y, v2.z, v3.x, v3.y, v3.z);
+		return string(str_rep);
+	}
 
 class Line {
 public:
@@ -50,8 +61,19 @@ float min_x, min_y, max_x, max_y;
 
 void makeTrianglesV1(vector<STPoint3> vertices, vector<Triangle> &triangles) {
 	//cout << "\t# of Triangles before: " << triangles.size() << endl;
-	for(int i = 0; i < vertices.size() - 2; i++){
-		triangles.push_back(Triangle(vertices[i], vertices[i+1], vertices[i+2]));
+	vector<STPoint3> vert_copy(vertices.size());
+	copy(vertices.begin(), vertices.end(), vert_copy.begin());
+	int j, j_prv, j_nxt;
+	int nSize = vertices.size();
+	//for(int i = 0; i < nSize - 2; i++){
+	while (nSize > 2)
+	{
+		j = 0;
+		j_nxt = (j+1)%nSize;
+		j_prv = (j+(nSize-1))%nSize;
+		triangles.push_back(Triangle(vert_copy[j], vert_copy[j_nxt], vert_copy[j_prv]));
+		vert_copy.erase(vert_copy.begin());
+		nSize = vert_copy.size();
 	}
 
 	//cout << "\t# of Triangles after: " << triangles.size() << endl;
@@ -64,6 +86,7 @@ void rasterizeTriangle(Triangle t){
 	Line line0(t.v1, t.v2);
 	Line line1(t.v2, t.v3);
 	Line line2(t.v3, t.v1);
+	cout << t.toString() << endl;
 	float e0 = 1.0, e1 = 1.0, e2 = 1.0;
 	for (int y = 0; y < buffer_height; y++){
 		for (int x = 0; x < buffer_width; x++){
@@ -88,6 +111,7 @@ void renderTriangles()
 	vector<Triangle>::iterator triangleIterator;
 	for(triangleIterator = triangles.begin(); triangleIterator != triangles.end(); triangleIterator++)
 	{
+		//cout << (*triangleIterator).toString();
 		rasterizeTriangle(*triangleIterator);	
 	}
 	cout << "# of Triangles after: " << triangles.size() << endl;
