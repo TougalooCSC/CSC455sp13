@@ -6,6 +6,7 @@
 #include <cstdio>
 #include <vector>
 #include <algorithm>
+#include <cmath>
 using namespace std;
 // --- Do not modify this code ---+
 #define IMPLEMENT_THIS_FUNCTION printf("Warning: call to unimplemented function!\n")
@@ -82,18 +83,42 @@ void fragment(int x, int y) {
 	//Ver. 1 - just fill the pixel
 	img->SetPixel(x,y,STImage::Pixel(current_color));
 }
+//For handling singularities (edges that touch pixels)
+int shadow( Line l) {
+	return (l.a > 0) || (l.a == 0 && l.b > 0);
+}
+int inside( float e, Line l) {
+	return (e == 0) ? !shadow(l) : (e < 0);
+}
+struct BoundingBox {
+	float xmin;
+ 	float xmax;
+	float ymin;
+	float ymax;
+};
+
+void bound3( Triangle t, BoundingBox &b ) {
+	b.xmin = ceil(min(min(t.v1.x, t.v2.x), t.v3.x));
+	b.xmax = ceil(max(max(t.v1.x, t.v2.x), t.v3.x));
+	b.ymin = ceil(min(min(t.v1.y, t.v2.y), t.v3.y));
+	b.ymax = ceil(max(max(t.v1.y, t.v2.y), t.v3.y));
+}
 void rasterizeTriangle(Triangle t){
 	Line line0(t.v1, t.v2);
 	Line line1(t.v2, t.v3);
 	Line line2(t.v3, t.v1);
+	BoundingBox b;
+	bound3(t, b);
+	printf("x (min, max) (%f, %f)\ny (min, max) (%f, %f)\n", 
+		b.xmin, b.xmax, b.ymin, b.ymax);
 	cout << t.toString() << endl;
 	float e0 = 1.0, e1 = 1.0, e2 = 1.0;
-	for (int y = 0; y < buffer_height; y++){
-		for (int x = 0; x < buffer_width; x++){
+	for (int y = b.ymin; y < b.ymax; y++){
+		for (int x = b.xmin; x < b.xmax; x++){
 			e0 = line0.a * x + line0.b * y + line0.c;
 			e1 = line1.a * x + line1.b * y + line1.c;
 			e2 = line2.a * x + line2.b * y + line2.c;
-			if (e0 <= 0 && e1 <= 0 && e2 <= 0)
+			if (inside(e0,line0) && inside(e1,line1) && inside(e2,line2))
 			{	
 				fragment(x,y);
 			}
