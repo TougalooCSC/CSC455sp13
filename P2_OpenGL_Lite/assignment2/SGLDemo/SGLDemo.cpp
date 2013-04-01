@@ -26,9 +26,12 @@ void display( void )
 	sglBeginTriangles();
      sglColor(.8f, .1f, 0.f);
      sglVertex(100.f, 100.f);
+	 sglColor(0.f, .8f, .1f);
      sglVertex(300.f, 100.f);
+	 sglColor(.1f, 0.f, .8f);
      sglVertex(300.f, 300.f);
-     sglVertex(100.f, 300.f);
+     sglColor(.8f, .8f, .0f);
+	 sglVertex(100.f, 300.f);
     sglEnd();
 
 

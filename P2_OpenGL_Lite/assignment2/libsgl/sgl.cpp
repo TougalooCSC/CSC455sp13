@@ -7,6 +7,7 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include "STColor4ub.h"
 using namespace std;
 // --- Do not modify this code ---+
 #define IMPLEMENT_THIS_FUNCTION printf("Warning: call to unimplemented function!\n")
@@ -16,17 +17,30 @@ int buffer_height;
 void setBuffer(STImage* ptr) { img = ptr; }
 void setBufferSize(int w, int h) { buffer_width = w; buffer_height = h; }
 // --- End of do not modify this code ---+
+//Added a class to encapsulate STPoint3 objects along with attributes
+class SGLPoint3 : public STPoint3
+{
+public:
+	STColor3f c;
+	SGLPoint3() : STPoint3() {}
+	SGLPoint3(float x, float y, float z) : STPoint3(x,y,z)
+	{}
+	SGLPoint3(float x, float y, float z, STColor3f color) : STPoint3(x,y,z)
+	{	c = color; }
+	SGLPoint3(STPoint3 pt) : STPoint3(pt.x, pt.y, pt.z) {}
+};
+
 class Triangle{
 
 public:
-	STPoint3 v1;
-	STPoint3 v2;
-	STPoint3 v3;
-	Triangle(STPoint3, STPoint3, STPoint3);
+	SGLPoint3 v1;
+	SGLPoint3 v2;
+	SGLPoint3 v3;
+	Triangle(SGLPoint3, SGLPoint3, SGLPoint3);
 	string toString();
 };
 
-Triangle::Triangle(STPoint3 vert1, STPoint3 vert2, STPoint3 vert3) 
+Triangle::Triangle(SGLPoint3 vert1, SGLPoint3 vert2, SGLPoint3 vert3) 
 {
 	v1 = vert1;
 	v2 = vert2;
@@ -54,18 +68,18 @@ Line::Line(STPoint3 v0, STPoint3 v1) {
 }
 stack<STTransform3> matrix_stack;
 STTransform3 current_matrix;
-vector<STPoint3> vertex_buffer;
+vector<SGLPoint3> vertex_buffer;
 vector<STColor3f> color_buffer;
 STColor3f current_color;
 //For computing the bounding box
-float min_x, min_y, max_x, max_y;
+double min_x, min_y, max_x, max_y;
 
-void makeTrianglesV1(vector<STPoint3> vertices, vector<Triangle> &triangles) {
+void makeTrianglesV1(vector<SGLPoint3> vertices, vector<Triangle> &triangles) {
 	//cout << "\t# of Triangles before: " << triangles.size() << endl;
-	vector<STPoint3> vert_copy(vertices.size());
+	vector<SGLPoint3> vert_copy(vertices.size());
 	copy(vertices.begin(), vertices.end(), vert_copy.begin());
 	int j, j_prv, j_nxt;
-	int nSize = vertices.size();
+	size_t nSize = vertices.size();
 	//for(int i = 0; i < nSize - 2; i++){
 	while (nSize > 2)
 	{
@@ -79,9 +93,9 @@ void makeTrianglesV1(vector<STPoint3> vertices, vector<Triangle> &triangles) {
 
 	//cout << "\t# of Triangles after: " << triangles.size() << endl;
 }
-void fragment(int x, int y) {
+void fragment(int x, int y, STColor4ub c) {
 	//Ver. 1 - just fill the pixel
-	img->SetPixel(x,y,STImage::Pixel(current_color));
+	img->SetPixel(x,y,c);
 }
 //For handling singularities (edges that touch pixels)
 int shadow( Line l) {
@@ -103,6 +117,22 @@ void bound3( Triangle t, BoundingBox &b ) {
 	b.ymin = ceil(min(min(t.v1.y, t.v2.y), t.v3.y));
 	b.ymax = ceil(max(max(t.v1.y, t.v2.y), t.v3.y));
 }
+void interpolateColor(Triangle t)
+{
+}
+SGLPoint3 normalize(SGLPoint3 v){
+	double x = (v.x - min_x)/(max_x - min_y);
+	double y = (v.y - min_y)/(max_y - min_y);
+	SGLPoint3 p(x,y,1);
+	p.c = v.c;
+	return p;
+}	
+double areaFunction(STPoint3 v0, STPoint3 v1, STPoint3 v){
+	SGLPoint3 p0 = normalize(v0);
+	SGLPoint3 p1 = normalize(v1);
+	SGLPoint3 p = normalize(v);
+	return (p0.y - p1.y)*p.x + (p1.x - p0.x)*p.y + p0.x*p1.y - p1.x*p0.y;
+}
 void rasterizeTriangle(Triangle t){
 	Line line0(t.v1, t.v2);
 	Line line1(t.v2, t.v3);
@@ -113,6 +143,13 @@ void rasterizeTriangle(Triangle t){
 		b.xmin, b.xmax, b.ymin, b.ymax);
 	cout << t.toString() << endl;
 	float e0 = 1.0, e1 = 1.0, e2 = 1.0;
+	float red, green, blue;
+	float area_1_2 = areaFunction(t.v2, t.v3, t.v1);
+	float area_2_0 = areaFunction(t.v3, t.v1, t.v2);
+	float area_0_1 = areaFunction(t.v1, t.v2, t.v3);
+	float alpha, beta, gamma;
+	printf("a_12: %f, a_20: %f, a_01: %f\n", area_1_2, area_2_0, area_0_1);
+
 	for (int y = b.ymin; y < b.ymax; y++){
 		for (int x = b.xmin; x < b.xmax; x++){
 			e0 = line0.a * x + line0.b * y + line0.c;
@@ -120,7 +157,18 @@ void rasterizeTriangle(Triangle t){
 			e2 = line2.a * x + line2.b * y + line2.c;
 			if (inside(e0,line0) && inside(e1,line1) && inside(e2,line2))
 			{	
-				fragment(x,y);
+				//STColor4ub c;
+				//c.a = 1.f;
+				alpha = areaFunction(t.v2, t.v3, STPoint3(x,y,1));
+				beta = areaFunction(t.v3, t.v1, STPoint3(x,y,1));
+				gamma = areaFunction(t.v1, t.v2, STPoint3(x,y,1));
+				//red = -e0*t.v1.c.r -e1*t.v2.c.r - e2*t.v3.c.r;
+				//green = -e0*t.v1.c.g - e1*t.v2.c.g - e2*t.v3.c.g;
+				//blue = -e0*t.v1.c.b - e1*t.v2.c.b - e2*t.v3.c.b;
+				red   = alpha*t.v1.c.r + beta*t.v2.c.r + gamma*t.v3.c.r;
+				green = alpha*t.v1.c.g + beta*t.v2.c.g + gamma*t.v3.c.g;
+				blue  = alpha*t.v1.c.b + beta*t.v2.c.b + gamma*t.v3.c.b;
+				fragment(x,y,STColor4ub(STColor3f(red,green,blue),255));
 			}
 		}	
 	}
@@ -200,11 +248,13 @@ void sglVertex(SGLfloat x, SGLfloat y)
 {
 	//IMPLEMENT_THIS_FUNCTION;
 	//1. Apply Transforms
-	STPoint3 point = current_matrix.multiply(STPoint3(x, y, 1.0f));
+	SGLPoint3 point(current_matrix.multiply(SGLPoint3(x, y, 1.0f)));
+	point.c = current_color;
 	//2. Insert into Vertex Buffer
 	vertex_buffer.push_back(point);
 	//3. Insert Current Color in Color Buffer
-	color_buffer.push_back(current_color);
+	//color_buffer.push_back(current_color);
+	
 	if (point.x < min_x)
 		min_x = point.x;
 	if (point.x > max_x)
