@@ -4,6 +4,7 @@
 	Version="9.00"
 	Name="libst"
 	ProjectGUID="{7FD037CD-7D78-4096-A827-0A7E6642FF74}"
+	RootNamespace="libst"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="131072"
 	>
@@ -212,6 +213,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\STTransform4.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\STVector2.cpp"
 				>
 			</File>
@@ -295,6 +300,10 @@
 			</File>
 			<File
 				RelativePath="..\include\STTimer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\STTransform4.h"
 				>
 			</File>
 			<File
