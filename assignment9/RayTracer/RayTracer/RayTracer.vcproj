@@ -179,6 +179,18 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\Camera.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ImagePlane.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Ray.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\RayTracer.cpp"
 				>
 			</File>
@@ -213,6 +225,26 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\Camera.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ImagePlane.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Ray.h"
+				>
+			</File>
+			<File
+				RelativePath=".\raytrace.h"
+				>
+			</File>
+			<File
+				RelativePath=".\rtForward.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Scene.h"
 				>
 			</File>
@@ -230,6 +262,94 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+			<File
+				RelativePath="..\exampleScenes\CornellBox.png"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\CornellBox.txt"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\RecursiveTest.png"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\RecursiveTest.txt"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\ShadowTest1.png"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\ShadowTest1.txt"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\ShadowTest2.png"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\ShadowTest2.txt"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\SphereShadingTest1.png"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\SphereShadingTest1.txt"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\SphereShadingTest2.png"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\SphereShadingTest2.txt"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\SphereTest.png"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\SphereTest.txt"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\TransformationTest.png"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\TransformationTest.txt"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\TransformStackTest.png"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\TransformStackTest.txt"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\TriangleShadingTest.png"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\TriangleShadingTest.txt"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\TriangleTest.png"
+				>
+			</File>
+			<File
+				RelativePath="..\exampleScenes\TriangleTest.txt"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\libst\vc2008\libst.vcproj"

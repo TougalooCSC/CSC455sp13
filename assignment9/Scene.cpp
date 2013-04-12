@@ -1,7 +1,7 @@
+#include "stdafx.h"
 #include "Scene.h"
 #include <fstream>
 #include <sstream>
-
 
 Scene::Scene(std::string sceneFilename)
 {
