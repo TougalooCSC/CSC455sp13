@@ -4,15 +4,16 @@
 #include "STPoint3.h"
 #include "ImagePlane.h"
 /*
-	Represents a ray dened by the equation e+td, where e is the ray's starting point and d is
-the direction the ray points in. Rays should also carry information about the minimum and maximum
-t value for which intersections with the ray are considered valid.
+	Reprsents a ray defined by the equation e+td, where e is the ray's 
+	starting point and d is the direction the ray points in. Rays should also 
+	carry information about the minimum and maximum t value for which 
+	intersections with the ray are considered valid.
 */
 class Ray
 {
 public:
 	Ray(void);
-	Ray(STPoint3, int, int);
+	Ray(STPoint3, STPoint3);
 	~Ray(void);
 
 private:

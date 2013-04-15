@@ -17,7 +17,7 @@
 *.dep
 *.vcxproj.*
 *.vcproj.*
-
+*.pch	
 
 
 # Packages #

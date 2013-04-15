@@ -14,7 +14,13 @@ public:
 	ImagePlane(void);
 	ImagePlane(STPoint3, STPoint3, STPoint3, STPoint3);
 	~ImagePlane(void);
+	STPoint3 getImagePlanePosition(int, int);
+	void setWidth(int);
+	void setHeight(int);
+	int getWidth();
+	int getHeight();
 private:
-	STPoint3 LL, LR, UL, UR; // Coordinates for the 4 corners of the image plane	
+	STPoint3 LL, LR, UL, UR; // Coordinates for the 4 corners of the image plane
+	int width, height;
 
 };

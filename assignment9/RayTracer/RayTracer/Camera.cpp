@@ -1,4 +1,6 @@
 #include "stdafx.h"
+#include "st.h"
+#include "STPoint3.h"
 #include "Camera.h"
 #include "ImagePlane.h"
 #include "Ray.h"
@@ -40,6 +42,9 @@ Camera& Camera::operator =( const Camera &rhs ) {
 	return *this;
 }
 
+ImagePlane Camera::getImagePlane() { return plane; }
+void Camera::setImagePlane(ImagePlane p) { plane = p;  }
+
 ImagePlane Camera::createImagePlane(){
 	STVector3 b = up;
 	STVector3 a = lookingAt - eye;
@@ -56,7 +61,9 @@ ImagePlane Camera::createImagePlane(){
 	ur = C - (x * u) + (y * v);
 	return ImagePlane(ll, ul, lr, ur);
 }
-Ray Camera::rayThruPixel(int, int)
+Ray Camera::rayThruPixel(int x, int y)
 {	
-	return Ray();
+	STPoint3 P = plane.getImagePlanePosition(x, y);
+	Ray ray(eye, P);
+	return ray;
 }

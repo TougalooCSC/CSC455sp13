@@ -10,9 +10,9 @@ Ray::Ray(void)
 	maxT = 1000.f;
 }
 
-Ray::Ray(STPoint3 e, int u, int v){
-	eye = e;
-	//direction =  
+Ray::Ray(STPoint3 E, STPoint3 P){
+	eye = E;
+	direction = P - E;  
 }
 
 Ray::~Ray(void)
