@@ -24,6 +24,9 @@
 	   - TODO: Implement ImagePlane class
 	     - Start in Camera method that creates an ImagePlane
 	     - Implemented method to generate Ray
+     - Implement Shape classes
+       - Triangle-Ray intersection
+       - Sphere-Ray intersection   	
 		  
 
 # Ray Tracing Pseudocode

@@ -199,6 +199,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Shape.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -246,6 +250,10 @@
 			</File>
 			<File
 				RelativePath="..\..\Scene.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Shape.h"
 				>
 			</File>
 			<File
@@ -351,6 +359,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\ClassDiagram1.cd"
+			>
+		</File>
 		<File
 			RelativePath="..\..\libst\vc2008\libst.vcproj"
 			>
