@@ -2,6 +2,7 @@
 #include "st.h"
 #include "rtForward.h"
 #include "STPoint3.h"
+#include "ImagePlane.h"
 /*
 	Represents a ray dened by the equation e+td, where e is the ray's starting point and d is
 the direction the ray points in. Rays should also carry information about the minimum and maximum
@@ -17,6 +18,7 @@ public:
 private:
 	STPoint3 eye;
 	STVector3 direction;
+	ImagePlane plane;
 	float minT;
 	float maxT;
 

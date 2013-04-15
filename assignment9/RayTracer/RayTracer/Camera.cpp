@@ -43,9 +43,20 @@ Camera& Camera::operator =( const Camera &rhs ) {
 ImagePlane Camera::createImagePlane(){
 	STVector3 b = up;
 	STVector3 a = lookingAt - eye;
-	return ImagePlane();
+	STVector3 w = a; w.Normalize(); // get the unit view vector
+	STVector3 u = STVector3::Cross(b,w); u.Normalize(); // get the right hand view unit vector
+	STVector3 v = STVector3::Cross(w,u);
+	STPoint3 C = eye + w;
+	double y = tan(fovy/2.0);
+	double x = tan(aspect * fovy / 2.0);
+	STPoint3 ll, ul, lr, ur;
+	ll = C + (x * u) - (y * v);
+	ul = C + (x * u) + (y * v);
+	lr = C - (x * u) - (y * v);
+	ur = C - (x * u) + (y * v);
+	return ImagePlane(ll, ul, lr, ur);
 }
 Ray Camera::rayThruPixel(int, int)
-{
+{	
 	return Ray();
 }
