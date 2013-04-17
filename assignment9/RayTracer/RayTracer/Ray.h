@@ -2,6 +2,7 @@
 #include "st.h"
 #include "rtForward.h"
 #include "STPoint3.h"
+#include "STVector3.h"
 #include "ImagePlane.h"
 /*
 	Reprsents a ray defined by the equation e+td, where e is the ray's 
@@ -15,6 +16,10 @@ public:
 	Ray(void);
 	Ray(STPoint3, STPoint3);
 	~Ray(void);
+	STPoint3 getOrigin();
+	STVector3 getDirection();
+	STPoint3 pointAlongRay(float t);
+	STPoint3 farthestPointAlongRay();
 
 private:
 	STPoint3 eye;

@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="C:\Users\corntoole\Documents\GitHub\CSC455sp13\assignment9\libst\include;..\libst\include"
+				AdditionalIncludeDirectories="C:\Users\corntoole\Documents\GitHub\CSC455sp13\assignment9\libst\include;..\libst\include;C:\Users\corntoole\Documents\GitHub\CSC455sp13\assignment9\RayTracer\RayTracer"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -63,7 +63,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="C:\Users\corntoole\Documents\GitHub\CSC455sp13\assignment9\libst\lib\Debug"
+				AdditionalLibraryDirectories="C:\Users\corntoole\Documents\GitHub\CSC455sp13\assignment9\libst\ext\vc2008\lib\Debug;C:\Users\corntoole\Documents\GitHub\CSC455sp13\assignment9\libst\ext\vc2008\lib\Release;C:\Users\corntoole\Documents\GitHub\CSC455sp13\assignment9\libst\lib\Debug"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -234,6 +234,10 @@
 			</File>
 			<File
 				RelativePath=".\ImagePlane.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Intersection.h"
 				>
 			</File>
 			<File

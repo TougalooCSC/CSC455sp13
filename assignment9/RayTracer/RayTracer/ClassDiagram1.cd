@@ -17,15 +17,8 @@
   <Class Name="Ray">
     <Position X="4.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAQAAAAAAKAAAAAAQAAAAAAAAAgAAAAAAAAAAAQA=</HashCode>
+      <HashCode>AAAAAQgAAAAAqQAAAAAQAAAAAAAIAgAAAAAAAAAAAQA=</HashCode>
       <FileName>Ray.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Scene">
-    <Position X="10" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAUgAAIAAAwAAAAEhACAAgAAAAAAAICwAASgAAAAAEA=</HashCode>
-      <FileName>c:\Users\corntoole\Documents\GitHub\CSC455sp13\assignment9\Scene.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Shape" Collapsed="true">
@@ -38,7 +31,7 @@
   <Class Name="Sphere">
     <Position X="6" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAACAAAAAAAAAQAAAAAAAAAAACAgAAAAAAAAAA=</HashCode>
+      <HashCode>AAgAAAAACAAAAAAAAAQAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
       <FileName>Shape.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -47,6 +40,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAABAAAAAAAAABQAAAAAgAIAAAAAAAA=</HashCode>
       <FileName>Shape.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Scene">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUgIAIAAgwAAAAEhACAAwAAAAAAAICwAASgAQAQAEA=</HashCode>
+      <FileName>c:\Users\corntoole\Documents\GitHub\CSC455sp13\assignment9\Scene.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

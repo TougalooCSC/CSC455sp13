@@ -2,6 +2,8 @@
 #include "Scene.h"
 #include <fstream>
 #include <sstream>
+#include "Camera.h"
+
 
 Scene::Scene(std::string sceneFilename)
 {
@@ -167,18 +169,20 @@ void Scene::FinishedParsing()
 void Scene::ParsedCamera(const STPoint3& eye, const STVector3& up, const STPoint3& lookAt, float fovy, float aspect)
 {
 	/** CS 148 TODO: Fill this in **/
+	this->camera = Camera(eye,up,lookAt,fovy,aspect);
 }
 
 void Scene::ParsedOutput(int imgWidth, int imgHeight, const std::string& outputFilename)
 {
 	/** CS 148 TODO: Fill this in **/
+	this->frame = new STImage(imgWidth, imgHeight);
+	//this->frame.Initialize(imgWidth, imgHeight);
 }
 
 void Scene::ParsedBounceDepth(int depth)
 {
 	/** CS 148 TODO: Fill this in **/
 }
-
 void Scene::ParsedShadowBias(float bias)
 {
 	/** CS 148 TODO: Fill this in **/
@@ -212,6 +216,8 @@ void Scene::ParsedTranslate(float tx, float ty, float tz)
 void Scene::ParsedSphere(const STPoint3& center, float radius)
 {
 	/** CS 148 TODO: Fill this in **/
+	Sphere s(center,radius);
+	this->spheres.push_back(s);
 }
 
 void Scene::ParsedTriangle(const STPoint3& v1, const STPoint3& v2, const STPoint3& v3)
@@ -237,4 +243,18 @@ void Scene::ParsedDirectionalLight(const STVector3& dir, const STColor3f& col)
 void Scene::ParsedMaterial(const STColor3f& amb, const STColor3f& diff, const STColor3f& spec, const STColor3f& mirr, float shine)
 {
 	/** CS 148 TODO: Fill this in **/
+}
+
+void Scene::render()
+{
+	int width = this->frame->GetWidth();
+	int height = this->frame->GetHeight();
+	for (int i = 0; i < height; i++)
+	{	
+		for (int j = 0; j < width; j++)
+		{
+			Ray ray = this->camera.rayThruPixel(i,j);
+		}
+
+	}
 }

@@ -2,7 +2,13 @@
 #define SCENE_H
 
 #include "st.h"
-
+#include "raytrace.h"
+/*#include "Camera.h"
+#include "ImagePlane.h"
+#include "Ray.h"
+#include "Intersection.h"
+*/
+#include <vector>
 
 class Scene
 {
@@ -10,6 +16,7 @@ public:
 	Scene(std::string sceneFilename);
 
 	/** CS 148 TODO: Add methods for the scene to render itself, etc. **/
+	void render();
 
 private:
 
@@ -34,6 +41,11 @@ private:
 	void ParsedMaterial(const STColor3f& amb, const STColor3f& diff, const STColor3f& spec, const STColor3f& mirr, float shine);
 
 	/** CS 148 TODO: Add instance vars to store camera, lights, objects, etc. **/
+	Camera camera;
+	STImage *frame;
+	std::vector<Sphere> spheres;
+	std::vector<Triangle> triangles;
+
 };
 
 

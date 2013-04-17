@@ -5,9 +5,11 @@
 #include "rtForward.h"
 
 //Include headers for all RayTracer classes/structs
-#include "Scence.h"
+#include "Scene.h"
 #include "Camera.h"
 #include "ImagePlane.h"
 #include "Ray.h"
+#include "Shape.h"
+#include "Intersection.h"
 
 #endif //_RAYTRACE_H

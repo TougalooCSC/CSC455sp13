@@ -12,14 +12,14 @@
 class Shape
 {
 public:
-	virtual bool doesItIntersect(Ray) = 0;
+	virtual bool doesItIntersect(Ray, float&) = 0;
 };
 
 class Triangle : public Shape
 {
 public:
 	Triangle(STPoint3, STPoint3, STPoint3);
-	bool doesItIntersect(Ray);
+	bool doesItIntersect(Ray, float& );
 private:
 	STPoint3 v0, v1, v2;
 };
@@ -28,9 +28,9 @@ class Sphere : public Shape
 {
 public:
 	Sphere(STPoint3, float);
-	bool doesItIntersect(Ray);
+	bool doesItIntersect(Ray, float&);
 private:
-	STPoint3 c;
+	STPoint3 center;
 	float radius;
 };
 
