@@ -2,10 +2,12 @@
 //
 
 #include "stdafx.h"
+#include "raytrace.h"
 
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	Scene scene("SphereTest.txt");
 	return 0;
 }
 

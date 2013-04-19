@@ -3,11 +3,11 @@
 
 #include "st.h"
 #include "raytrace.h"
-/*#include "Camera.h"
+#include "Camera.h"
 #include "ImagePlane.h"
 #include "Ray.h"
 #include "Intersection.h"
-*/
+#include "Shape.h"
 #include <vector>
 
 class Scene
@@ -16,7 +16,9 @@ public:
 	Scene(std::string sceneFilename);
 
 	/** CS 148 TODO: Add methods for the scene to render itself, etc. **/
+	Intersection findIntersection(Ray);
 	void render();
+	void setMaxT(float);
 
 private:
 
@@ -45,6 +47,8 @@ private:
 	STImage *frame;
 	std::vector<Sphere> spheres;
 	std::vector<Triangle> triangles;
+	float max_t;
+	std::string outputfilename;
 
 };
 

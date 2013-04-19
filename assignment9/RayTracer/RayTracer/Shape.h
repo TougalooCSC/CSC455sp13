@@ -29,6 +29,8 @@ class Sphere : public Shape
 public:
 	Sphere(STPoint3, float);
 	bool doesItIntersect(Ray, float&);
+	STPoint3 getCenter();
+	float getRadius();
 private:
 	STPoint3 center;
 	float radius;

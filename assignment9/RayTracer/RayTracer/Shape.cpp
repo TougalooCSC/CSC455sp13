@@ -17,7 +17,7 @@ Sphere::Sphere(STPoint3 center, float radius) {
 	this->center = center;
 	this->radius = radius;
 }
-
+STPoint3 Sphere::getCenter() { return center; }
 bool Sphere::doesItIntersect(Ray r, float &t) {
 	STPoint3 O = r.getOrigin(); 
 	STVector3 D = r.getDirection();

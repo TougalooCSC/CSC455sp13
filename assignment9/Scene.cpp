@@ -2,12 +2,14 @@
 #include "Scene.h"
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 #include "Camera.h"
 
 
 Scene::Scene(std::string sceneFilename)
 {
 	Parse(sceneFilename);
+	this->max_t = 1000.0;
 }
 
 void Scene::Parse(std::string sceneFilename)
@@ -22,6 +24,10 @@ void Scene::Parse(std::string sceneFilename)
 		printf("Scene::Parse - Could not find input scene file '%s'\n", sceneFilename.c_str());
 		exit(1);
 	}
+	//else
+	//	printf("All systems are go!\n");
+	//this->outputfilename = sceneFilename;
+	//this->outputfilename
 
 	char line[1024];
 	while (!sceneFile.eof())
@@ -163,6 +169,9 @@ void Scene::BeganParsing()
 void Scene::FinishedParsing()
 {
 	/** CS 148 TODO: Fill this in **/
+	this->render();
+	this->frame->Save("Output.png");
+	
 }
 
 
@@ -244,7 +253,44 @@ void Scene::ParsedMaterial(const STColor3f& amb, const STColor3f& diff, const ST
 {
 	/** CS 148 TODO: Fill this in **/
 }
+bool cmp_intersection(Intersection &a, Intersection &b)
+{
+	return a.t < b.t;	
+}
 
+void Scene::setMaxT(float max){
+	this->max_t = max;
+}
+Intersection Scene::findIntersection( Ray ray)
+{
+	std::vector<Intersection> hits;
+	float t = 0.0;
+	for(std::vector<Sphere>::iterator sphere_it = this->spheres.begin(); sphere_it != this->spheres.end(); ++sphere_it)
+	{
+		if(sphere_it->doesItIntersect(ray, t)){
+			Intersection hit; 
+			hit.t = t;
+			hit.P = ray.getOrigin() + t * ray.getDirection();
+			STVector3 hit_normal = hit.P - sphere_it->getCenter();
+			hit_normal.Normalize();
+			hit.N = hit_normal;
+			hits.push_back(hit);
+		}
+	}
+	
+	// If we find no hits, then the ray goes off into infinity or max_t
+	if (hits.size() == 0)
+	{
+		Intersection no_hit;
+		no_hit.t = Scene::max_t+1.0;
+		return no_hit;
+	}
+	else{
+		//Find the Intersection with the minimum t value
+		std::vector<Intersection>::iterator result = std::min_element(hits.begin(), hits.end(), cmp_intersection);
+		return *result;
+	}
+}
 void Scene::render()
 {
 	int width = this->frame->GetWidth();
@@ -254,6 +300,11 @@ void Scene::render()
 		for (int j = 0; j < width; j++)
 		{
 			Ray ray = this->camera.rayThruPixel(i,j);
+			Intersection hit = this->findIntersection(ray);
+			if ( hit.t < this->max_t )
+				this->frame->SetPixel(i,j,STImage::Pixel(STColor3f(0.0)));
+			else
+				this->frame->SetPixel(i,j,STImage::Pixel(STColor3f(1.0)));
 		}
 
 	}
